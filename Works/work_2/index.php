@@ -1,8 +1,6 @@
 <?php
-// Не корректное задание, что за N в первом столбце не очень понятно
-    $n = 10;
+$n = 10;
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,23 +12,18 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <table>
-        <tbody>
-        <?php
-        for ($i = 0; $i <= $n; $i++):
-            if ($i % 2 == 0): ?>
-                <tr>
-                    <td class="even"><?= $i ?></td>
-                </tr>
-            <?php else: ?>
-            <tr>
-                <td class="odd"><?= $i ?></td>
-            </tr>
-            <?php endif; ?>
-<?php endfor; ?>
+<table>
+    <tbody>
 
-        </tbody>
-    </table>
-<!--    <script src="./script.js"></script>-->
+        <?php
+        for ($i = 0; $i <= $n; $i++): ?>
+        <tr><td class="<?= $i % 2 === 0 ? 'even': 'odd' ?>" ><?= $i ?></td></tr>
+            <!-- <tr> не трогать это как отдельная колонка иначе верстка ломается -->
+        <?php endfor; ?>
+
+    </tbody>
+</table>
+<!--<script src="./script.js"> </script> -->
+<!-- Как альтернатива JS-->
 </body>
 </html>
