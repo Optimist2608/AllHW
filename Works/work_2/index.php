@@ -14,13 +14,11 @@ $n = 10;
 <body>
 <table>
     <tbody>
-
         <?php
         for ($i = 0; $i <= $n; $i++): ?>
         <tr><td class="<?= $i % 2 === 0 ? 'even': 'odd' ?>" ><?= $i ?></td></tr>
             <!-- <tr> не трогать это как отдельная колонка иначе верстка ломается -->
         <?php endfor; ?>
-
     </tbody>
 </table>
 <!--<script src="./script.js"> </script> -->
