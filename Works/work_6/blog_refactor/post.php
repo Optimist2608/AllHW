@@ -5,11 +5,11 @@ try {
     $postId = $_GET ["id"] ?? null;
     $post = getPost((int)$postId);
     $posts = getPosts();
-    if ($post === null || $postId === null || $postId < 0 || $postId > count($posts["posts"])) {
+    if ($post === null || $postId === null || $postId < 0 || $postId > count($posts)) {
         showError("Поста не существует", true);
     }
 } catch (exception $e) {
-    
+
     showError("Ошибка сервера: " . $e->getMessage(), false);
 }
 
