@@ -1,0 +1,15 @@
+{
+    "name": "akk-ma/blog_refactor",
+    "autoload": {
+        "psr-4": {
+            "AkkMa\\BlogRefactor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Optimist2608",
+            "email": "akkMakara@mail.ru"
+        }
+    ],
+    "require": {}
+}
