@@ -11,8 +11,8 @@ $outputStr = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nums = [
-        "num1" => (float)$_POST["num1"],
-        "num2" => (float)$_POST["num2"]];
+        "num1" => $_POST["num1"],
+        "num2" => $_POST["num2"]];
 
     foreach ($nums as $num) {
         if (is_null($num)) {

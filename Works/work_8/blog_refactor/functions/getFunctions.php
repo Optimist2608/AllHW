@@ -1,19 +1,18 @@
 <?php
-require_once __DIR__ . "/fileDataDecode.php";
-require_once __DIR__ . "/redirectToError.php";
+require_once __DIR__ . "/importer.php";
 
 
 function getPost(int $id, bool $needIndex = false): array
 {
-    $posts = getPosts();
-    if ($id < 0 || $id >= count($posts)) {
+    $posts = array_values(getPosts());
+    if ($id < 0) {
         redirectToError();
     }
-    $currentPostIndex = array_search($id, array_column($posts, "id"));
+    $currentPostIndex = array_search($id, array_column($posts, "id")); //крутая фишка из документации в php
     if ($currentPostIndex === false) {
-        redirectToError(500);
+        redirectToError(404);
     }
-    $post = $posts[(int)$currentPostIndex];
+    $post = $posts[$currentPostIndex];
     return $needIndex ? [
         "post" => $post,
         "index" => $currentPostIndex
@@ -30,7 +29,7 @@ function getCategories(): array
     return fileDataDecode("categories");
 }
 
-function getDeletePostCash(): array
+function getDeletePostCache(): array
 {
-    return fileDataDecode("deletePostsCash");
+    return fileDataDecode("deletePostsCache");
 }

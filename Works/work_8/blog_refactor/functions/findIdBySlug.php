@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . "/getFunctions.php";
-require_once __DIR__ . "/redirectToError.php";
+require_once __DIR__ . "/importer.php";
 function findIdBySlug(?string $slug): ?int
 {
     if ($slug === null) {

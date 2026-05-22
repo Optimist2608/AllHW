@@ -1,30 +1,45 @@
 <?php
-require_once __DIR__ . "/functions/getFunctions.php";
-require_once __DIR__ . "/functions/debug.php";
-require_once __DIR__ . "/functions/redirectToError.php";
-require_once __DIR__ . "/functions/putArrayToJSON.php";
+require_once __DIR__ . '/functions/importer.php';
 
 try {
     $categories = getCategories();
     $posts = getPosts();
-    $id = (int)$_GET["id"];
+    $id = $_GET["id"];
     if (!is_numeric($id)) {
         redirectToError();
     }
     $currentPost = getPost($id, true);
     $currentCategoryId = $currentPost["post"]["categoryId"];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $categoryId = (int)$_POST["categoryId"];
+        $title = $_POST["title"];
+        $description = $_POST["description"];
+        $date = $_POST["date"];
+        $author = $_POST["author"];
+
+        if ($categoryId < 0 || $categoryId >= count($categories)) {
+            redirectToError(400);
+        }
+        if (validateString($title, 5)) {
+            redirectToError(400);
+        }
+        if (validateString($description, 15)) {
+            redirectToError(400);
+        }
+        if (validateString($author, 3)) {
+            redirectToError(400);
+        }
+
         unset($currentPost["post"]);
         $posts[$currentPost["index"]] = [
             "id" => $id,
-            "categoryId" => $_POST["categoryId"],
-            "title" => $_POST["title"],
-            "description" => $_POST["description"],
-            "date" => $_POST["date"],
-            "author" => $_POST["author"]
+            "categoryId" => $categoryId,
+            "title" => $title,
+            "description" => $description,
+            "date" => $date,
+            "author" => $author
         ];
-        sort($posts);
-        putArrayToJSON($posts, "posts"); // адаптировать другие функции под нее
+        putArrayToJSON($posts, "posts");
         header("Location: /post.php?id=$id");
         die();
     }

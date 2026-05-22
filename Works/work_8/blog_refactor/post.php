@@ -1,14 +1,16 @@
 <?php
-require_once __DIR__ . "/functions/getFunctions.php";
-require_once __DIR__ . "/functions/redirectToError.php";
+require_once __DIR__ . '/functions/importer.php';
+require_once __DIR__ . '/functions/debug.php';
 
 try {
     $postId = $_GET ["id"] ?? null;
-    $post = getPost((int)$postId);
-    $posts = getPosts();
-    if ($post === null || $postId === null || $postId < 0 || $postId > count($posts)) {
+
+    if ($postId === null) {
         redirectToError();
     }
+    $post = getPost((int)$postId);
+
+
 } catch (exception $e) {
     redirectToError(500);
 }

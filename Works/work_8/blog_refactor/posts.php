@@ -1,30 +1,21 @@
 <?php
-require_once __DIR__ . "/functions/getFunctions.php";
-require_once __DIR__ . "/functions/findIdBySlug.php";
-require_once __DIR__ . "/functions/redirectToError.php";
+require_once __DIR__ . '/functions/importer.php';
+require_once __DIR__ . '/functions/deletePostsCache.php';
+require_once __DIR__ . '/functions/debug.php';
 
-// Обработка POST-запроса на удаление
+// обработка POST-запроса на удаление
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    header('Content-Type: application/json');
-    $input = json_decode(file_get_contents('php://input'), true);
-    if (!isset($input['id'])) {
-        redirectToError();
-    }
-    $filePath = __DIR__ . '/data/deletePostsCash.json';
-    $cash = json_decode(file_get_contents($filePath), true) ?? [];
-    $cash[] = ['id' => (int)$input['id']];
-    file_put_contents($filePath, json_encode($cash, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    echo json_encode(['success' => true]);
-    exit;
+    // ии, но идея моя
+    deletePostsCache();
+    // /ии
 }
-
 
 try {
     $posts = getPosts();
     $categories = getCategories();
     $currentCategorySlug = $_GET["category"] ?? null;
     $currentCategoryId = findIdBySlug($currentCategorySlug);
-    $deletePostCash = getDeletePostCash();
+    $deletePostCash = getDeletePostCache();
 
     if (!empty($deletePostCash)) {
         foreach ($deletePostCash as $postId) {
@@ -36,13 +27,18 @@ try {
             }
         }
         $posts = array_values($posts);
-        file_put_contents(__DIR__ . "/data/posts.json", json_encode($posts, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-        file_put_contents(__DIR__ . "/data/deletePostsCash.json", json_encode([], JSON_PRETTY_PRINT));
+        putArrayToJSON($posts, "posts");
+        putArrayToJSON([], "deletePostsCache");
     }
+
+    uasort($posts, function ($item1, $item2) {
+        return $item2["id"] <=> $item1["id"];
+    }); //cортировка новых постов по id тк не понимаю как сортировать по дате у нас она 2022-02-01 странно и мутерно поэтому id
 
 } catch (Exception $e) {
     redirectToError(500);
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -81,11 +77,11 @@ try {
                     <p class="post-date"><?= htmlspecialchars($post["date"]) ?></p>
                     <p class="post-author"><?= htmlspecialchars($post["author"]) ?></p>
                     <div class="post-actions">
-                        <a href="edit-post.php?id=<?= $post["id"] ?>" class="edit-post-btn">
+                        <a href="edit-post.php?id=<?= htmlspecialchars($post["id"]) ?>" class="edit-post-btn">
                             Редактировать
                         </a>
                         <button class="delete-post-btn"
-                                data-post-id="<?= $post["id"] ?>"
+                                data-post-id="<?= htmlspecialchars($post["id"]) ?>"
                                 data-post-title="<?= htmlspecialchars($post["title"]) ?>">
                             Удалить
                         </button>

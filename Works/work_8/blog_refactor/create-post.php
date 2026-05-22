@@ -1,28 +1,12 @@
 <?php
-require __DIR__ . '/functions/getFunctions.php';
-require_once __DIR__ . '/functions/redirectToError.php';
+require_once __DIR__ . '/functions/importer.php';
+require_once __DIR__ . '/functions/savePost.php';
+
 $categories = getCategories();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $posts = getPosts();
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    if (empty($title) || empty($description)) {
-        redirectToError(400);
-    }
-    $posts[] = [
-        "title" => $_POST['title'],
-        "description" => $_POST['description'],
-        "categoryId" => $_POST['categoryId'],
-        "date" => date("20y-m-d"),
-        "author" => "Makar",
-
-    ];
-    $id = array_key_last($posts);
-    $posts[$id]["id"] = $id;
-    file_put_contents(__DIR__ . '/data/posts.json', json_encode($posts, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE));
-    header("Location: /post.php?id=$id");
-    die();
-    // поставить бы у инпутов required и не парится
+    savePost();
+    // поставить бы у инпутов required и не парится c валидацией
+    // как же хочется убрать все файлы php из главной папки глаза режут очень сильно, от React и его модулей не могу отойти
 }
 
 ?>
@@ -62,11 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    placeholder="Введите заголовок поста..."
                    name="title"
                    id="title"
-                   maxlength="100"
-                   minlength="5">
+
             <!-- проблема решена -->
 
-            <div class="required">Максимум 100 символов</div>
+            <div class="required">Минимум 5 символов</div>
         </div>
 
         <div class="form-group">
@@ -76,8 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       cols="30"
                       rows="10"
                       placeholder="Введите содержание вашего поста..."
-                      minlength="5"
+
             ></textarea>
+            <div class="required">Минимум 15 символов</div>
         </div>
         <div class="form-group">
             <label for="author">Автор</label>
@@ -86,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       placeholder="Введите имя автора..."
                       minlength="3"
             ></textarea>
+            <div class="required">Минимум 3 символа</div>
         </div>
 
         <button type="submit" class="submit-btn">
