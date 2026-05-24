@@ -1,0 +1,158 @@
+.create-post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border: 2px solid rgb(219, 91, 5);
+    border-radius: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: rgb(219, 91, 5);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.form-group label::before {
+    content: "➤ ";
+    color: rgb(93, 197, 24);
+}
+
+select, input, textarea {
+    background-color: #1a1a1a;
+    border: 1px solid rgb(219, 91, 5);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+select:focus, input:focus, textarea:focus {
+    outline: none;
+    border-color: rgb(93, 197, 24);
+    box-shadow: 0 0 10px rgba(93, 197, 24, 0.3);
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, rgb(219, 91, 5) 0%, rgb(180, 70, 0) 100%);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(219, 91, 5, 0.4);
+    background: linear-gradient(135deg, rgb(240, 100, 10) 0%, rgb(200, 80, 0) 100%);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-header h2 {
+    font-size: 32px;
+    position: relative;
+    display: inline-block;
+}
+
+.form-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, rgb(219, 91, 5), rgb(93, 197, 24));
+    border-radius: 2px;
+}
+
+.required {
+    color: rgb(219, 91, 5);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    body {
+        margin: 10px 20px;
+    }
+
+    .create-post-form {
+        padding: 20px;
+    }
+
+    .form-header h2 {
+        font-size: 24px;
+    }
+}
+
+/* Анимация появления */
+.create-post-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стили для placeholder */
+::placeholder {
+    color: #666;
+    opacity: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset;
+    -webkit-text-fill-color: white;
+}

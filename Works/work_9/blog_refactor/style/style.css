@@ -1,0 +1,395 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    vertical-align: top;
+}
+
+body {
+    margin: 10px 150px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
+}
+
+html {
+    color: white;
+}
+
+h1,
+h2,
+h3 {
+    color: rgb(219, 91, 5);
+}
+
+/* Шапка */
+
+.head {
+    display: flex;
+    gap: 40px;
+    padding: 5px 20px;
+    border: 4px double rgb(219, 91, 5);
+}
+
+.head_link {
+    text-decoration: none;
+    color: rgb(219, 91, 5);
+    font-size: 26px;
+    font-weight: 600;
+    transform: scale(1);
+    transition: transform 700ms ease-in-out;
+}
+
+.head_link:not(.active):hover {
+    transform: scale(1.05);
+    color: rgb(93, 197, 24);
+}
+
+/* Посты */
+
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.post {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid rgb(219, 91, 5);
+    padding: 20px;
+    gap: 5px;
+}
+
+.post-content {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.post-footer {
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+}
+
+.post-title {
+    font-size: 20px;
+    color: rgb(219, 91, 5);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.post-title:hover {
+    color: rgb(200 144 16);
+}
+
+.post-date {
+    font-size: 14px;
+    color: #b5b5b5;
+}
+
+.post-author {
+    font-size: 12px;
+    color: #878787;
+}
+
+.active {
+    transform: scale(1.05);
+    color: rgb(93, 197, 24);
+}
+
+/* Отдельные посты */
+
+.detail-post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 2px solid rgb(209 16 171);;
+}
+
+.detail-post-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-post-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 300px;
+}
+
+.detail-post-author {
+    align-self: flex-end;
+    color: #878787;
+}
+
+.detail-post-title {
+    font-weight: 700;
+    font-size: 30px;
+    max-width: 800px;
+}
+
+.detail-error {
+    color: #c89d13;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+/* Категории */
+
+.categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.category {
+    text-decoration: none;
+    background-color: #4709ac;
+    color: snow;
+    border-radius: 15px;
+    padding: 5px 10px;
+    transition: 700ms;
+    font-size: 1rem;
+}
+
+.category:hover {
+    transform: scale(1.05);
+}
+
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+/* Кнопка удаления */
+.delete-post-btn {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+}
+
+.delete-post-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.delete-post-btn:active {
+    transform: translateY(0);
+}
+
+/* Маленькая иконка для кнопки */
+.delete-post-btn::before {
+    content: "🗑️";
+    font-size: 12px;
+}
+
+/* Редактирование поста (если нужно) */
+.edit-post-btn {
+    background: linear-gradient(135deg, rgb(219, 91, 5) 0%, rgb(180, 70, 0) 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+}
+
+.edit-post-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(219, 91, 5, 0.4);
+}
+
+.edit-post-btn::before {
+    content: "✏️";
+    font-size: 12px;
+}
+
+/* Версия кнопки только иконка (компактная) */
+.delete-post-icon {
+    background: rgba(220, 38, 38, 0.2);
+    border: 1px solid #dc2626;
+    color: #dc2626;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.delete-post-icon:hover {
+    background: #dc2626;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Модальное окно подтверждения удаления */
+.delete-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-modal.active {
+    display: flex;
+}
+
+.delete-modal-content {
+    max-width: 450px;
+    width: 90%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid rgb(219, 91, 5);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.delete-modal-warning {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.delete-modal h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: rgb(219, 91, 5);
+}
+
+.delete-modal p {
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.delete-modal-post-title {
+    background: rgba(219, 91, 5, 0.1);
+    border-left: 3px solid rgb(219, 91, 5);
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 6px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.delete-modal-cancel {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-modal-cancel:hover {
+    transform: translateY(-2px);
+}
+
+.delete-modal-confirm {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-modal-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .post-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .delete-post-btn,
+    .edit-post-btn {
+        justify-content: center;
+    }
+
+    .delete-modal-content {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .delete-modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

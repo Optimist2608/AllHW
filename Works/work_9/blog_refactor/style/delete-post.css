@@ -1,0 +1,233 @@
+.delete-container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Карточка подтверждения */
+.delete-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid rgb(219, 91, 5);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Иконка предупреждения */
+.delete-warning-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: shakeIcon 0.5s ease-in-out;
+}
+
+@keyframes shakeIcon {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+.delete-card h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: rgb(219, 91, 5);
+}
+
+.delete-message {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Предпросмотр поста */
+.delete-post-preview {
+    background: rgba(219, 91, 5, 0.1);
+    border-left: 4px solid rgb(219, 91, 5);
+    padding: 20px;
+    margin: 25px 0;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.delete-post-label {
+    color: rgb(219, 91, 5);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.delete-post-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    word-break: break-word;
+    margin-bottom: 8px;
+}
+
+.delete-post-description {
+    color: #b5b5b5;
+    font-size: 14px;
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.delete-post-category {
+    display: inline-block;
+    background-color: #4709ac;
+    color: snow;
+    border-radius: 15px;
+    padding: 4px 12px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.delete-post-date {
+    color: #878787;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* Кнопки действий */
+.delete-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.delete-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-family: inherit;
+}
+
+.delete-btn-danger {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+}
+
+.delete-btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.delete-btn-secondary {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+}
+
+.delete-btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(55, 65, 81, 0.4);
+    background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+}
+
+.delete-btn-danger:active,
+.delete-btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Текст предупреждения */
+.delete-warning-text {
+    color: #fbbf24;
+    font-size: 14px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Карточка ошибки (пост не найден) */
+.delete-error-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 2px solid #dc2626;
+    border-radius: 16px;
+    padding: 50px 40px;
+    text-align: center;
+}
+
+.delete-error-icon {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.delete-error-card h2 {
+    color: #dc2626;
+    margin-bottom: 15px;
+}
+
+.delete-error-card p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.delete-btn-back {
+    background: linear-gradient(135deg, rgb(219, 91, 5) 0%, rgb(180, 70, 0) 100%);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.delete-btn-back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(219, 91, 5, 0.4);
+}
+
+/* Адаптивность для delete страницы */
+@media (max-width: 768px) {
+    .delete-card {
+        padding: 25px;
+    }
+
+    .delete-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .delete-btn {
+        text-align: center;
+    }
+
+    .delete-warning-icon {
+        font-size: 60px;
+    }
+
+    .delete-error-card {
+        padding: 30px 20px;
+    }
+}
